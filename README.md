@@ -554,6 +554,8 @@ echo "Welcome to $HOST" > /var/www/html/index.html
 service apache2 restart
 ```
 
+![alt text](assets/no4.png)
+
 # Misi 2: Menemukan Jejak Sang Peretas
 
 ## Soal 1: Set iptables
