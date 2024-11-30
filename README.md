@@ -179,14 +179,14 @@ iface eth1 inet static
 	netmask 255.255.255.192
 ```
 
-**Burnice (Client)**
+**Burnice - 5 Host (Client)**
 
 ```bash
 auto eth0
 iface eth0 inet dhcp
 ```
 
-**Caesar (Client)**
+**Caesar - 50 Host (Client)**
 
 ```bash
 auto eth0
@@ -549,7 +549,9 @@ service apache2 restart
 
 ## Soal 1: Set iptables
 
-> Agar jaringan di New Eridu bisa terhubung ke luar (internet), kalian perlu mengkonfigurasi routing menggunakan iptables. Namun, kalian tidak diperbolehkan menggunakan MASQUERADE
+> Agar jaringan di New Eridu bisa terhubung ke luar (internet), kalian perlu mengkonfigurasi routing menggunakan iptables. Namun, kalian tidak diperbolehkan menggunakan MASQUERADE.
+
+**iptables.sh**
 
 ```bash
 ETH0_IP=$(ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
