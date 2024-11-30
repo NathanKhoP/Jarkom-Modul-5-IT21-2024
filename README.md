@@ -320,7 +320,16 @@ iface eth2 inet static
 	address 10.74.1.221
 	netmask 255.255.255.252
 
-# TO-DO
+# RIGHT
+post-up route add -net 10.74.0.0 netmask 255.255.255.0 gw 10.74.1.218
+post-up route add -net 10.74.1.192 netmask 255.255.255.248 gw 10.74.1.218
+post-up route add -net 10.74.1.0 netmask 255.255.255.128 gw 10.74.1.218
+
+# LEFT
+post-up route add -net 10.74.1.200 netmask 255.255.255.248 gw 10.74.1.222
+post-up route add -net 10.74.1.208 netmask 255.255.255.248 gw 10.74.1.222
+post-up route add -net 10.74.1.128 netmask 255.255.255.192 gw 10.74.1.222
+post-up route add -net 10.74.1.224 netmask 255.255.255.252 gw 10.74.1.222
 ```
 
 **SixStreet (Router)**
@@ -345,9 +354,10 @@ iface eth2 inet static
 	address 10.74.1.209
 	netmask 255.255.255.248
 
-# TO-DO
+post-up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.74.1.221
+post-up route add -net 10.74.1.128 netmask 255.255.255.192 gw 10.74.1.210 # A4
+post-up route add -net 10.74.1.224 netmask 255.255.255.252 gw 10.74.1.211 # A5
 ```
-
 
 **OuterRing (Router)**
 
@@ -365,7 +375,8 @@ iface eth1 inet static
 	address 10.74.1.129
 	netmask 255.255.255.192
 
-# TO-DO
+post-up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.74.1.209
+post-up route add -net 10.74.1.224 netmask 255.255.255.252 gw 10.74.1.211 # A5
 ```
 
 **ScootOutpost (Router)**
@@ -384,7 +395,8 @@ iface eth1 inet static
 	address 10.74.1.225
 	netmask 255.255.255.252
 
-# TO-DO
+post-up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.74.1.209
+post-up route add -net 10.74.1.128 netmask 255.255.255.192 gw 10.74.1.210 # A4
 ```
 
 **LuminaSquare (Router)**
@@ -409,7 +421,8 @@ iface eth2 inet static
 	address 10.74.1.193
 	netmask 255.255.255.248
 
-# TO-DO
+post-up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.74.1.217
+post-up route add -net 10.74.1.0 netmask 255.255.255.128 gw 10.74.1.194 # A9
 ```
 
 **BalletTwins (Router)**
@@ -428,7 +441,7 @@ iface eth1 inet static
   address 10.74.1.1
 	netmask 255.255.255.128
 
-# TO-DO
+post-up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.74.1.192
 ```
 
 ## Soal 4: Konfigurasi
