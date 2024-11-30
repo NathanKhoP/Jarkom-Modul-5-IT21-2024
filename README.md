@@ -573,10 +573,13 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source $ETH0_IP
 
 > Karena Fairy adalah Al yang sangat berharga, kalian perlu memastikan bahwa tidak ada perangkat lain yang bisa melakukan ping ke Fairy. Tapi Fairy tetap dapat mengakses seluruh perangkat.
 
-Sembari menunggu, Fairy menyarankan Phaethon untuk berlatih di server HIA dan meminta bantuan dari faksi Victoria (Ellen & Lycaon) dan PubSec. Akses HIA hanya diperbolehkan untuk
-a. Ellen dan Lycaon pada jam 08.00-21.00.
-b. Jane dan Policeboo pada jam 03.00-23.00. (hak kepolisian)
-Gunakan Curl untuk memastikan akses ini.
+> Sembari menunggu, Fairy menyarankan Phaethon untuk berlatih di server HIA dan meminta bantuan dari faksi Victoria (Ellen & Lycaon) dan PubSec. Akses HIA hanya diperbolehkan untuk
+>
+> a. Ellen dan Lycaon pada jam 08.00-21.00.
+>
+> b. Jane dan Policeboo pada jam 03.00-23.00. (hak kepolisian)
+>
+> Gunakan Curl untuk memastikan akses ini.
 
 ## Soal 3
 
