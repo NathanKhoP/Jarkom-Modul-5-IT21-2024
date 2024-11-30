@@ -4,31 +4,35 @@
 |--|--|
 | Nathan Kho Pancras | 5027231002 |
 | Muhammad Andrean Rizq Prasetio | 5027231052 |
-
+****
 ## Daftar Isi
 
 - [Jarkom-Modul-5-IT21-2024](#jarkom-modul-5-it21-2024)
-  - [Daftar Isi](#daftar-isi)
+	- [Daftar Isi](#daftar-isi)
 - [Misi 1: Memetakan Kota New Eridu](#misi-1-memetakan-kota-new-eridu)
-  - [Soal 1: Topologi \& Subnetting](#soal-1-topologi--subnetting)
-  - [Soal 2: VLSM](#soal-2-vlsm)
-    - [Detail Subnetting](#detail-subnetting)
-    - [Pembagian IP](#pembagian-ip)
-  - [Soal 3: Set IP \& Routing](#soal-3-set-ip--routing)
-    - [Set IP](#set-ip)
-    - [Routing](#routing)
-  - [Soal 4: Konfigurasi](#soal-4-konfigurasi)
+	- [Soal 1: Topologi \& Subnetting](#soal-1-topologi--subnetting)
+	- [Soal 2: VLSM](#soal-2-vlsm)
+		- [Detail Subnetting](#detail-subnetting)
+		- [Pembagian IP](#pembagian-ip)
+	- [Soal 3: Set IP \& Routing](#soal-3-set-ip--routing)
+		- [Set IP](#set-ip)
+		- [Routing](#routing)
+	- [Soal 4: Konfigurasi](#soal-4-konfigurasi)
+		- [DNS Server - dnsserv.sh](#dns-server---dnsservsh)
+		- [DHCP Relay - dhcprelay.sh](#dhcp-relay---dhcprelaysh)
+		- [DHCP Server - dhcpserv.sh](#dhcp-server---dhcpservsh)
+		- [Webserver - webserv.sh](#webserver---webservsh)
 - [Misi 2: Menemukan Jejak Sang Peretas](#misi-2-menemukan-jejak-sang-peretas)
-  - [Soal 1](#soal-1)
-  - [Soal 2](#soal-2)
-  - [Soal 3](#soal-3)
-  - [Soal 4](#soal-4)
-  - [Soal 5](#soal-5)
-  - [Soal 6](#soal-6)
-  - [Soal 7](#soal-7)
-  - [Soal 8](#soal-8)
+	- [Soal 1](#soal-1)
+	- [Soal 2](#soal-2)
+	- [Soal 3](#soal-3)
+	- [Soal 4](#soal-4)
+	- [Soal 5](#soal-5)
+	- [Soal 6](#soal-6)
+	- [Soal 7](#soal-7)
+	- [Soal 8](#soal-8)
 - [Misi 3: Menangkap Burnice](#misi-3-menangkap-burnice)
-  - [Soal 1](#soal-1-1)
+	- [Soal 1](#soal-1-1)
 
 
 # Misi 1: Memetakan Kota New Eridu
@@ -76,15 +80,15 @@ Keterangan:
 
 | Subnet | Network ID       | Netmask           | Broadcast       | Range IP                     |
 |--------|-------------------|-------------------|-----------------|------------------------------|
-| A1     | 192.245.1.220     | 255.255.255.252   | 192.245.1.223   | 192.245.1.221 - 192.245.1.222|
-| A2     | 192.245.1.200     | 255.255.255.248   | 192.245.1.207   | 192.245.1.201 - 192.245.1.206|
-| A3     | 192.245.1.208     | 255.255.255.248   | 192.245.1.215   | 192.245.1.209 - 192.245.1.214|
-| A4     | 192.245.1.128     | 255.255.255.192   | 192.245.1.191   | 192.245.1.129 - 192.245.1.190|
-| A5     | 192.245.1.224     | 255.255.255.252   | 192.245.1.227   | 192.245.1.225 - 192.245.1.226|
-| A6     | 192.245.1.216     | 255.255.255.252   | 192.245.1.219   | 192.245.1.217 - 192.245.1.218|
-| A7     | 192.245.0.0       | 255.255.255.0     | 192.245.0.255   | 192.245.0.1 - 192.245.0.254  |
-| A8     | 192.245.1.192     | 255.255.255.248   | 192.245.1.199   | 192.245.1.193 - 192.245.1.198|
-| A9     | 192.245.1.0       | 255.255.255.128   | 192.245.1.127   | 192.245.1.1 - 192.245.1.126  |
+| A1     | 10.74.1.220     | 255.255.255.252   | 10.74.1.223   | 10.74.1.221 - 10.74.1.222|
+| A2     | 10.74.1.200     | 255.255.255.248   | 10.74.1.207   | 10.74.1.201 - 10.74.1.206|
+| A3     | 10.74.1.208     | 255.255.255.248   | 10.74.1.215   | 10.74.1.209 - 10.74.1.214|
+| A4     | 10.74.1.128     | 255.255.255.192   | 10.74.1.191   | 10.74.1.129 - 10.74.1.190|
+| A5     | 10.74.1.224     | 255.255.255.252   | 10.74.1.227   | 10.74.1.225 - 10.74.1.226|
+| A6     | 10.74.1.216     | 255.255.255.252   | 10.74.1.219   | 10.74.1.217 - 10.74.1.218|
+| A7     | 10.74.0.0       | 255.255.255.0     | 10.74.0.255   | 10.74.0.1 - 10.74.0.254  |
+| A8     | 10.74.1.192     | 255.255.255.248   | 10.74.1.199   | 10.74.1.193 - 10.74.1.198|
+| A9     | 10.74.1.0       | 255.255.255.128   | 10.74.1.127   | 10.74.1.1 - 10.74.1.126  |
 
 ## Soal 3: Set IP & Routing
 
@@ -97,111 +101,436 @@ Keterangan:
 **NewEridu (Router)**
 
 ```bash
+auto eth0
+iface eth0 inet dhcp
+
+# A1
+auto eth1
+iface eth1 inet static
+	address 10.74.1.217
+	netmask 255.255.255.252
+
+# A6
+auto eth2
+iface eth2 inet static
+	address 10.74.1.221
+	netmask 255.255.255.252
 ```
 
 **SixStreet (Router)**
 
 ```bash
+# A1
+auto eth0
+iface eth0 inet static
+	address 10.74.1.222
+	netmask 255.255.255.252
+	gateway 10.74.1.221
+
+# A2
+auto eth1
+iface eth1 inet static
+	address 10.74.1.201
+	netmask 255.255.255.248
+
+# A3
+auto eth2
+iface eth2 inet static
+	address 10.74.1.209
+	netmask 255.255.255.248
 ```
 
 **Fairy (DHCP Server)**
 
 ```bash
+# A2
+auto eth0
+iface eth0 inet static
+	address 10.74.1.202
+	netmask 255.255.255.248
+	gateway 10.74.1.201
 ```
 
 **HDD (DNS Server)**
 
 ```bash
-```
-
-**Metro (Router)**
-
-```bash
+# A2
+auto eth0
+iface eth0 inet static
+	address 10.74.1.203
+	netmask 255.255.255.248
+	gateway 10.74.1.201
 ```
 
 **OuterRing (Router)**
 
 ```bash
+# A3
+auto eth0
+iface eth0 inet static
+	address 10.74.1.210
+	netmask 255.255.255.248
+	gateway 10.74.1.209
+
+# A4
+auto eth1
+iface eth1 inet static
+	address 10.74.1.129
+	netmask 255.255.255.192
 ```
 
 **Burnice (Client)**
 
 ```bash
+auto eth0
+iface eth0 inet dhcp
 ```
 
 **Caesar (Client)**
 
 ```bash
+auto eth0
+iface eth0 inet dhcp
 ```
 
 **ScootOutpost (Router)**
 
 ```bash
+# A3
+auto eth0
+iface eth0 inet static
+	address 10.74.1.211
+	netmask 255.255.255.248
+	gateway 10.74.1.209
+
+# A5
+auto eth1
+iface eth1 inet static
+	address 10.74.1.225
+	netmask 255.255.255.252
 ```
 
 **HollowZero (Webserver)**
 
 ```bash
+# A5
+auto eth0
+iface eth0 inet static
+	address 10.74.1.226
+	netmask 255.255.255.252
+	gateway 10.74.1.225
 ```
 
 **LuminaSquare (Router)**
 
 ```bash
+# A6
+auto eth0
+iface eth0 inet static
+	address 10.74.1.218
+	netmask 255.255.255.252
+	gateway 10.74.1.217
+
+# A7
+auto eth1
+iface eth1 inet static
+	address 10.74.0.1
+	netmask 255.255.255.0
+
+# A8
+auto eth2
+iface eth2 inet static
+	address 10.74.1.193
+	netmask 255.255.255.248
 ```
 
 **Jane - 200 Host (Client)**
 
 ```bash
+auto eth0
+iface eth0 inet dhcp
 ```
 
 **Policeboo - 30 Host (Client)**
 
 ```bash
+auto eth0
+iface eth0 inet dhcp
 ```
 
 **HIA (Webserver)**
 
 ```bash
+# A8
+auto eth0
+iface eth0 inet static
+	address 10.74.1.195
+	netmask 255.255.255.248
+  gateway 10.74.1.193
 ```
 
 **BalletTwins (Router)**
 
 ```bash
+# A8
+auto eth0
+iface eth0 inet static
+	address 10.74.1.194
+	netmask 255.255.255.248
+  gateway 10.74.1.193
+
+# A9
+auto eth1
+iface eth1 inet static
+  address 10.74.1.1
+	netmask 255.255.255.128
 ```
 
 **Ellen - 100 Host (Client)**
 
 ```bash
+auto eth0
+iface eth0 inet dhcp
 ```
 
 **Lycaon - 20 Host (Client)**
 
 ```bash
+auto eth0
+iface eth0 inet dhcp
 ```
 
 ### Routing
 
 **NewEridu (Router)**
 
+```bash
+auto eth0
+iface eth0 inet dhcp
 
+# A1
+auto eth1
+iface eth1 inet static
+	address 10.74.1.217
+	netmask 255.255.255.252
+
+# A6
+auto eth2
+iface eth2 inet static
+	address 10.74.1.221
+	netmask 255.255.255.252
+
+# TO-DO
+```
 
 **SixStreet (Router)**
 
+```bash
+# A1
+auto eth0
+iface eth0 inet static
+	address 10.74.1.222
+	netmask 255.255.255.252
+	gateway 10.74.1.221
+
+# A2
+auto eth1
+iface eth1 inet static
+	address 10.74.1.201
+	netmask 255.255.255.248
+
+# A3
+auto eth2
+iface eth2 inet static
+	address 10.74.1.209
+	netmask 255.255.255.248
+
+# TO-DO
+```
 
 
 **OuterRing (Router)**
 
+```bash
+# A3
+auto eth0
+iface eth0 inet static
+	address 10.74.1.210
+	netmask 255.255.255.248
+	gateway 10.74.1.209
 
+# A4
+auto eth1
+iface eth1 inet static
+	address 10.74.1.129
+	netmask 255.255.255.192
+
+# TO-DO
+```
 
 **ScootOutpost (Router)**
 
+```bash
+# A3
+auto eth0
+iface eth0 inet static
+	address 10.74.1.211
+	netmask 255.255.255.248
+	gateway 10.74.1.209
 
+# A5
+auto eth1
+iface eth1 inet static
+	address 10.74.1.225
+	netmask 255.255.255.252
+
+# TO-DO
+```
+
+**LuminaSquare (Router)**
+
+```bash
+# A6
+auto eth0
+iface eth0 inet static
+	address 10.74.1.218
+	netmask 255.255.255.252
+	gateway 10.74.1.217
+
+# A7
+auto eth1
+iface eth1 inet static
+	address 10.74.0.1
+	netmask 255.255.255.0
+
+# A8
+auto eth2
+iface eth2 inet static
+	address 10.74.1.193
+	netmask 255.255.255.248
+
+# TO-DO
+```
 
 **BalletTwins (Router)**
 
+```bash
+# A8
+auto eth0
+iface eth0 inet static
+	address 10.74.1.194
+	netmask 255.255.255.248
+  gateway 10.74.1.193
 
+# A9
+auto eth1
+iface eth1 inet static
+  address 10.74.1.1
+	netmask 255.255.255.128
+
+# TO-DO
+```
 
 ## Soal 4: Konfigurasi
+
+> Dikerjakan setelah Misi 2 Nomor 1:
+>
+>> Fairy sebagai DHCP Server agar perangkat yang berada dalam Burnice, Caesar, Ellen, Jane, Lycaon, dan Policeboo dapat menerima IP secara otomatis
+>> OuterRing, BalletTwins, Sixstreet dan LuminaSquare Sebagai DHCP Relay
+>> HDD sebagai DNS Server
+>> HIA dan HollowZero sebagai Webserver (gunakan apache)
+
+### DNS Server - dnsserv.sh
+
+```bash
+echo 'nameserver 192.168.122.1' > /etc/resolv.conf
+apt-get update && apt-get install isc-dhcp-server -y
+
+echo '
+INTERFACESv4="eth0"
+INTERFACESv6=""
+' > /etc/default/isc-dhcp-server
+
+echo '
+# Jane & Policeboo 
+subnet 10.74.0.0 netmask 255.255.255.0 {
+  range 10.74.0.2 10.74.0.254;
+  option routers 10.74.0.1;
+  option broadcast-address 10.74.0.255;
+  option domain-name-servers 10.74.1.203;
+}
+# Ellen & Lycaon 
+subnet 10.74.1.0 netmask 255.255.255.128 {
+  range 10.74.1.2 10.74.1.254;
+  option routers 10.74.1.1;
+  option broadcast-address 10.74.1.127;
+  option domain-name-servers 10.74.1.203;
+}
+# Caesar & Burnice 
+subnet 10.74.1.128 netmask 255.255.255.192 {
+  range 10.74.1.130 10.74.1.190;
+  option routers 10.74.1.129;
+  option broadcast-address 10.74.1.191;
+  option domain-name-servers 10.74.1.203;
+}
+' > /etc/dhcp/dhcpd.conf
+
+service isc-dhcp-server restart
+```
+
+### DHCP Relay - dhcprelay.sh
+
+```bash
+echo 'nameserver 192.168.122.1' > /etc/resolv.conf
+apt-get update && apt-get install isc-dhcp-relay -y
+
+# IP Fairy: 10.74.1.202
+echo '
+SERVERS="10.74.1.202"
+INTERFACES="eth0 eth1 eth2 eth3"
+OPTIONS=""
+' > /etc/default/isc-dhcp-relay
+
+echo '
+net.ipv4.ip_forward=1
+' > /etc/sysctl.conf
+
+service isc-dhcp-relay restart
+```
+
+### DHCP Server - dhcpserv.sh
+
+```bash
+echo 'nameserver 192.168.122.1' > /etc/resolv.conf
+apt-get update && apt-get install bind9 -y
+
+echo 'options {
+    directory "/var/cache/bind";
+
+    forwarders {
+        192.168.122.1;
+    };
+
+    // dnssec-validation auto;
+
+    allow-query { any; };
+    auth-nxdomain no;    # conform to RFC1035
+    listen-on-v6 { any; };
+};' > /etc/bind/named.conf.options
+
+service bind9 restart
+```
+
+### Webserver - webserv.sh
+
+```bash
+echo 'nameserver 192.168.122.1' > /etc/resolv.conf
+apt-get update && apt-get install apache2 -y
+
+echo "Welcome to $HOST" > /var/www/html/index.html
+
+service apache2 restart
+```
 
 # Misi 2: Menemukan Jejak Sang Peretas
 
