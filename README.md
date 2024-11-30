@@ -449,8 +449,11 @@ post-up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.74.1.192
 > Dikerjakan setelah Misi 2 Nomor 1:
 >
 >> Fairy sebagai DHCP Server agar perangkat yang berada dalam Burnice, Caesar, Ellen, Jane, Lycaon, dan Policeboo dapat menerima IP secara otomatis
+>
 >> OuterRing, BalletTwins, Sixstreet dan LuminaSquare Sebagai DHCP Relay
+>
 >> HDD sebagai DNS Server
+>
 >> HIA dan HollowZero sebagai Webserver (gunakan apache)
 
 ### DNS Server - dnsserv.sh
