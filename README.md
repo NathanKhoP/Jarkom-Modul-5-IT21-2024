@@ -266,7 +266,7 @@ auto eth0
 iface eth0 inet static
 	address 10.74.1.195
 	netmask 255.255.255.248
-  gateway 10.74.1.193
+  	gateway 10.74.1.193
 ```
 
 **BalletTwins (Router)**
@@ -277,12 +277,12 @@ auto eth0
 iface eth0 inet static
 	address 10.74.1.194
 	netmask 255.255.255.248
-  gateway 10.74.1.193
+  	gateway 10.74.1.193
 
 # A9
 auto eth1
 iface eth1 inet static
-  address 10.74.1.1
+  	address 10.74.1.1
 	netmask 255.255.255.128
 ```
 
@@ -433,12 +433,12 @@ auto eth0
 iface eth0 inet static
 	address 10.74.1.194
 	netmask 255.255.255.248
-  gateway 10.74.1.193
+ 	gateway 10.74.1.193
 
 # A9
 auto eth1
 iface eth1 inet static
-  address 10.74.1.1
+  	address 10.74.1.1
 	netmask 255.255.255.128
 
 post-up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.74.1.192
