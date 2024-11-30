@@ -94,7 +94,7 @@ Keterangan:
 
 > Setelah pembagian IP selesai, buatlah konfigurasi rute untuk menghubungkan semua subnet dengan benar di jaringan New Eridu. Pastikan perangkat dapat saling terhubung.
 
-**NOTE: Untuk konfigurasi IP dan routing dimasukkan ke /etc/network/interfaces atau di GNS3 > Configure > Edit network interfaces**
+**NOTE: Untuk konfigurasi IP dan routing dimasukkan ke /etc/network/interfaces atau di GNS3 > Select Node > Configure > Edit network configuation**
 
 ### Set IP
 
