@@ -571,18 +571,64 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source $ETH0_IP
 
 ## Soal 2
 
+> Karena Fairy adalah Al yang sangat berharga, kalian perlu memastikan bahwa tidak ada perangkat lain yang bisa melakukan ping ke Fairy. Tapi Fairy tetap dapat mengakses seluruh perangkat.
+
+Sembari menunggu, Fairy menyarankan Phaethon untuk berlatih di server HIA dan meminta bantuan dari faksi Victoria (Ellen & Lycaon) dan PubSec. Akses HIA hanya diperbolehkan untuk
+a. Ellen dan Lycaon pada jam 08.00-21.00.
+b. Jane dan Policeboo pada jam 03.00-23.00. (hak kepolisian)
+Gunakan Curl untuk memastikan akses ini.
+
 ## Soal 3
+
+> Selain itu, agar kejadian sebelumnya tidak terulang, hanya Fairy yang dapat mengakses HDD. Gunakan nc (netcat) untuk memastikan akses ini. [hapus aturan iptables setelah pengujian selesai agar internet tetap dapat diakses.]
+
+
+
 
 ## Soal 4
 
+> Fairy mendeteksi aktivitas mencurigakan di server Hollow. Namun, berdasarkan peraturan polisi New Eridu, Hollow hanya boleh diakses pada hari Senin hingga Jumat dan hanya oleh faksi SoC (Burnice & Caesar) dan PubSec (Jane & Policeboo). Karena hari ini hari Sabtu, mereka harus menunggu hingga hari Senin. Gunakan curl untuk memastikan akses ini.
+
+
+
 ## Soal 5
+
+> Sembari menunggu, Fairy menyarankan Phaethon untuk berlatih di server HIA dan meminta bantuan dari faksi Victoria (Ellen & Lycaon) dan PubSec. Akses HIA hanya diperbolehkan untuk
+>
+> a. Ellen dan Lycaon pada jam 08.00-21.00.
+>
+> b. Jane dan Policeboo pada jam 03.00-23.00. (hak kepolisian)
+>
+> Gunakan curl untuk memastikan akses ini.
+
+
 
 ## Soal 6
 
+> Sebagai bagian dari pelatihan, PubSec diminta memperketat keamanan jaringan di server HIA. Jane dan Policeboo melakukan simulasi port scan menggunakan nmap pada rentang port 1-100.
+>
+> a. Web server harus memblokir aktivitas scan port yang melebihi 25 port secara otomatis dalam rentang waktu 10 detik.
+>
+> b. Penyerang yang terblokir tidak dapat melakukan ping, nc, atau curl ke HIA.
+>
+> c. Catat log dari iptables untuk keperluan analisis dan dokumentasikan dalam format PDF.
+
+ 
+
 ## Soal 7
 
+> Hari Senin tiba, dan Fairy menyarankan membatasi akses ke server Hollow. Akses ke Hollow hanya boleh berasal dari 2 koneksi aktif dari 2 IP yang berbeda dalam waktu bersamaan.Burnice, Caesar, Jane, dan Policeboo diminta melakukan uji coba menggunakan curl.
+
+
+
 ## Soal 8
+
+> Selama uji coba, Fairy mendeteksi aktivitas mencurigakan dari Burnice. Setiap paket yang dikirim Fairy ke Burnice ternyata dialihkan ke HollowZero. Gunakan nc untuk memastikan alur pengalihan ini.
+
+
 
 # Misi 3: Menangkap Burnice
 
 ## Soal 1
+
+> Mengetahui hal tersebut Wise dan Belle mengambil langkah drastis: memblokir semua lalu lintas yang masuk dan keluar dari Burnice, gunakan nc dan ping. **Burnice ya bukan Caesar**
