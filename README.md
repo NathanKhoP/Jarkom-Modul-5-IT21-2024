@@ -18,9 +18,9 @@
 		- [Set IP](#set-ip)
 		- [Routing](#routing)
 	- [Soal 4: Konfigurasi](#soal-4-konfigurasi)
-		- [DNS Server - dnsserv.sh](#dns-server---dnsservsh)
-		- [DHCP Relay - dhcprelay.sh](#dhcp-relay---dhcprelaysh)
 		- [DHCP Server - dhcpserv.sh](#dhcp-server---dhcpservsh)
+		- [DHCP Relay - dhcprelay.sh](#dhcp-relay---dhcprelaysh)
+		- [DNS Server - dnsserv.sh](#dns-server---dnsservsh)
 		- [Webserver - webserv.sh](#webserver---webservsh)
 - [Misi 2: Menemukan Jejak Sang Peretas](#misi-2-menemukan-jejak-sang-peretas)
 	- [Soal 1: Set iptables](#soal-1-set-iptables)
@@ -449,14 +449,14 @@ post-up route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.74.1.192
 > Dikerjakan setelah Misi 2 Nomor 1:
 >
 >> Fairy sebagai DHCP Server agar perangkat yang berada dalam Burnice, Caesar, Ellen, Jane, Lycaon, dan Policeboo dapat menerima IP secara otomatis
->
+>>
 >> OuterRing, BalletTwins, Sixstreet dan LuminaSquare Sebagai DHCP Relay
->
+>>
 >> HDD sebagai DNS Server
->
+>>
 >> HIA dan HollowZero sebagai Webserver (gunakan apache)
 
-### DNS Server - dnsserv.sh
+### DHCP Server - dhcpserv.sh
 
 ```bash
 echo 'nameserver 192.168.122.1' > /etc/resolv.conf
@@ -514,7 +514,7 @@ net.ipv4.ip_forward=1
 service isc-dhcp-relay restart
 ```
 
-### DHCP Server - dhcpserv.sh
+### DNS Server - dnsserv.sh
 
 ```bash
 echo 'nameserver 192.168.122.1' > /etc/resolv.conf
