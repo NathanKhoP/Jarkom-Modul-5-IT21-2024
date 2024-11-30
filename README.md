@@ -573,20 +573,40 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source $ETH0_IP
 
 > Karena Fairy adalah Al yang sangat berharga, kalian perlu memastikan bahwa tidak ada perangkat lain yang bisa melakukan ping ke Fairy. Tapi Fairy tetap dapat mengakses seluruh perangkat.
 
+```bash
+iptables -A INPUT -p icmp --icmp-type echo-request -j DROP # block pings TO fairy
+iptables -A OUTPUT -p icmp --icmp-type echo-request -j ACCEPT # allow pings FROM fairy
+```
 
+Revert:
+```bash
+iptables -D INPUT -p icmp --icmp-type echo-request -j DROP
+iptables -D OUTPUT -p icmp --icmp-type echo-request -j ACCEPT
+```
 
 ## Soal 3
 
 > Selain itu, agar kejadian sebelumnya tidak terulang, hanya Fairy yang dapat mengakses HDD. Gunakan nc (netcat) untuk memastikan akses ini. [hapus aturan iptables setelah pengujian selesai agar internet tetap dapat diakses.]
 
-
+```bash
+iptables -A INPUT -s 10.74.1.202 -j ACCEPT # accept from fairy
+iptables -A INPUT -j REJECT # block all
+```
 
 
 ## Soal 4
 
 > Fairy mendeteksi aktivitas mencurigakan di server Hollow. Namun, berdasarkan peraturan polisi New Eridu, Hollow hanya boleh diakses pada hari Senin hingga Jumat dan hanya oleh faksi SoC (Burnice & Caesar) dan PubSec (Jane & Policeboo). Karena hari ini hari Sabtu, mereka harus menunggu hingga hari Senin. Gunakan curl untuk memastikan akses ini.
 
+```bash
+iptables -A INPUT -p tcp -s <IP_Burnice> --dport 80 -m time --timestart 00:00 --timestop 23:59 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
+iptables -A INPUT -p tcp -s <IP_Caesar> --dport 80 -m time --timestart 00:00 --timestop 23:59 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
+iptables -A INPUT -p tcp -s <IP_Jane> --dport 80 -m time --timestart 00:00 --timestop 23:59 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
+iptables -A INPUT -p tcp -s <IP_Policeboo> --dport 80 -m time --timestart 00:00 --timestop 23:59 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
+iptables -A INPUT -p tcp --dport 80 -j REJECT
+```
 
+Testing: `curl http://10.74.1.226`
 
 ## Soal 5
 
@@ -598,7 +618,17 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source $ETH0_IP
 >
 > Gunakan curl untuk memastikan akses ini.
 
+```bash
+# Ellen & Lycaon (08:00 - 21:00)
+iptables -A INPUT -p tcp -s <IP Ellen> --dport 80 -m time --timestart 01:00 --timestop 14:00 --weekdays Mon,Tue,Wed,Thu,Fri,Sat,Sun -j ACCEPT
+iptables -A INPUT -p tcp -s <IP Lycaon> --dport 80 -m time --timestart 01:00 --timestop 14:00 --weekdays Mon,Tue,Wed,Thu,Fri,Sat,Sun -j ACCEPT
 
+# Jane & Policeboo (03:00 - 23:00)
+iptables -A INPUT -p tcp -s <IP Jane> --dport 80 -m time --timestart 20:00 --timestop 16:00 --weekdays Mon,Tue,Wed,Thu,Fri,Sat,Sun -j ACCEPT
+iptables -A INPUT -p tcp -s <IP Policeboo> --dport 80 -m time --timestart 20:00 --timestop 16:00 --weekdays Mon,Tue,Wed,Thu,Fri,Sat,Sun -j ACCEPT
+
+iptables -A INPUT -p tcp --dport 80 -j REJECT # reject other requests
+```
 
 ## Soal 6
 
@@ -609,8 +639,6 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source $ETH0_IP
 > b. Penyerang yang terblokir tidak dapat melakukan ping, nc, atau curl ke HIA.
 >
 > c. Catat log dari iptables untuk keperluan analisis dan dokumentasikan dalam format PDF.
-
- 
 
 ## Soal 7
 
