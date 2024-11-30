@@ -23,7 +23,7 @@
 		- [DHCP Server - dhcpserv.sh](#dhcp-server---dhcpservsh)
 		- [Webserver - webserv.sh](#webserver---webservsh)
 - [Misi 2: Menemukan Jejak Sang Peretas](#misi-2-menemukan-jejak-sang-peretas)
-	- [Soal 1](#soal-1)
+	- [Soal 1: Set iptables](#soal-1-set-iptables)
 	- [Soal 2](#soal-2)
 	- [Soal 3](#soal-3)
 	- [Soal 4](#soal-4)
@@ -32,7 +32,7 @@
 	- [Soal 7](#soal-7)
 	- [Soal 8](#soal-8)
 - [Misi 3: Menangkap Burnice](#misi-3-menangkap-burnice)
-	- [Soal 1](#soal-1-1)
+	- [Soal 1](#soal-1)
 
 
 # Misi 1: Memetakan Kota New Eridu
@@ -547,7 +547,14 @@ service apache2 restart
 
 # Misi 2: Menemukan Jejak Sang Peretas
 
-## Soal 1
+## Soal 1: Set iptables
+
+> Agar jaringan di New Eridu bisa terhubung ke luar (internet), kalian perlu mengkonfigurasi routing menggunakan iptables. Namun, kalian tidak diperbolehkan menggunakan MASQUERADE
+
+```bash
+ETH0_IP=$(ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
+iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source $ETH0_IP
+```
 
 ## Soal 2
 
