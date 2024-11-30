@@ -107,13 +107,13 @@ iface eth0 inet dhcp
 # A1
 auto eth1
 iface eth1 inet static
-	address 10.74.1.217
+	address 10.74.1.221
 	netmask 255.255.255.252
 
 # A6
 auto eth2
 iface eth2 inet static
-	address 10.74.1.221
+	address 10.74.1.217
 	netmask 255.255.255.252
 ```
 
@@ -311,13 +311,13 @@ iface eth0 inet dhcp
 # A1
 auto eth1
 iface eth1 inet static
-	address 10.74.1.217
+	address 10.74.1.221
 	netmask 255.255.255.252
 
 # A6
 auto eth2
 iface eth2 inet static
-	address 10.74.1.221
+	address 10.74.1.217
 	netmask 255.255.255.252
 
 # RIGHT
