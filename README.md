@@ -562,7 +562,7 @@ service apache2 restart
 
 > Agar jaringan di New Eridu bisa terhubung ke luar (internet), kalian perlu mengkonfigurasi routing menggunakan iptables. Namun, kalian tidak diperbolehkan menggunakan MASQUERADE.
 
-**iptables.sh**
+**iptables.sh - NewEridu**
 
 ```bash
 ETH0_IP=$(ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
@@ -572,6 +572,8 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source $ETH0_IP
 ## Soal 2
 
 > Karena Fairy adalah Al yang sangat berharga, kalian perlu memastikan bahwa tidak ada perangkat lain yang bisa melakukan ping ke Fairy. Tapi Fairy tetap dapat mengakses seluruh perangkat.
+
+**iptables.sh - Fairy**
 
 ```bash
 iptables -A INPUT -p icmp --icmp-type echo-request -j DROP # block pings TO fairy
@@ -588,15 +590,22 @@ iptables -D OUTPUT -p icmp --icmp-type echo-request -j ACCEPT
 
 > Selain itu, agar kejadian sebelumnya tidak terulang, hanya Fairy yang dapat mengakses HDD. Gunakan nc (netcat) untuk memastikan akses ini. [hapus aturan iptables setelah pengujian selesai agar internet tetap dapat diakses.]
 
+**iptables.sh - HDD**
+
 ```bash
 iptables -A INPUT -s 10.74.1.202 -j ACCEPT # accept from fairy
 iptables -A INPUT -j REJECT # block all
 ```
 
+Testing: 
+- `nc 10.74.1.203 1234` - Fairy
+- `nc -l -p 1234` - HDD
 
 ## Soal 4
 
 > Fairy mendeteksi aktivitas mencurigakan di server Hollow. Namun, berdasarkan peraturan polisi New Eridu, Hollow hanya boleh diakses pada hari Senin hingga Jumat dan hanya oleh faksi SoC (Burnice & Caesar) dan PubSec (Jane & Policeboo). Karena hari ini hari Sabtu, mereka harus menunggu hingga hari Senin. Gunakan curl untuk memastikan akses ini.
+
+**iptables.sh - HollowZero**
 
 ```bash
 iptables -A INPUT -p tcp -s <IP_Burnice> --dport 80 -m time --timestart 00:00 --timestop 23:59 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
@@ -618,6 +627,8 @@ Testing: `curl http://10.74.1.226`
 >
 > Gunakan curl untuk memastikan akses ini.
 
+**iptables.sh - HIA**
+
 ```bash
 # Ellen & Lycaon (08:00 - 21:00)
 iptables -A INPUT -p tcp -s <IP Ellen> --dport 80 -m time --timestart 01:00 --timestop 14:00 --weekdays Mon,Tue,Wed,Thu,Fri,Sat,Sun -j ACCEPT
@@ -630,6 +641,8 @@ iptables -A INPUT -p tcp -s <IP Policeboo> --dport 80 -m time --timestart 20:00 
 iptables -A INPUT -p tcp --dport 80 -j REJECT # reject other requests
 ```
 
+Testing: `curl 10.74.1.195` (harus di UTC time)
+
 ## Soal 6
 
 > Sebagai bagian dari pelatihan, PubSec diminta memperketat keamanan jaringan di server HIA. Jane dan Policeboo melakukan simulasi port scan menggunakan nmap pada rentang port 1-100.
@@ -640,43 +653,52 @@ iptables -A INPUT -p tcp --dport 80 -j REJECT # reject other requests
 >
 > c. Catat log dari iptables untuk keperluan analisis dan dokumentasikan dalam format PDF.
 
+**iptables.sh - HIA**
+
 ```bash
-# Limit port scanning 25 koneksi/10 detik
+# rate limit -  25conn/10s
 iptables -N PORTSCAN
 iptables -A INPUT -p tcp --dport 1:100 -m state --state NEW -m recent --set --name portscan
 iptables -A INPUT -p tcp --dport 1:100 -m state --state NEW -m recent --update --seconds 10 --hitcount 25 --name portscan -j PORTSCAN
 
-# Memblokir IP port scanning diatas 25
+# block attackers (port scanning)
 iptables -A PORTSCAN -m recent --set --name blacklist
 iptables -A PORTSCAN -j DROP
 
-# Memblokir IP pada daftar blacklist
+# block all activities from blacklisted IPs
 iptables -A INPUT -m recent --name blacklist --rcheck -j REJECT
 iptables -A OUTPUT -m recent --name blacklist --rcheck -j REJECT
 
-iptables -A PORTSCAN -j LOG --log-prefix='PORT SCAN DETECTED' --log-level 4 # Logging port scanning
+iptables -A PORTSCAN -j LOG --log-prefix='PORT SCAN DETECTED' --log-level 4 # logging
 ```
+
+Testing: `nmap -p 1-100 10.74.1.195`, ping, curl, nc
 
 ## Soal 7
 
-> Hari Senin tiba, dan Fairy menyarankan membatasi akses ke server Hollow. Akses ke Hollow hanya boleh berasal dari 2 koneksi aktif dari 2 IP yang berbeda dalam waktu bersamaan.Burnice, Caesar, Jane, dan Policeboo diminta melakukan uji coba menggunakan curl.
+> Hari Senin tiba, dan Fairy menyarankan membatasi akses ke server Hollow. Akses ke Hollow hanya boleh berasal dari 2 koneksi aktif dari 2 IP yang berbeda dalam waktu bersamaan. Burnice, Caesar, Jane, dan Policeboo diminta melakukan uji coba menggunakan curl.
 
 ```bash
-# Konfigurasi HollowZero
+# max 2 conns from 2 diff IPs
 iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW -m recent --set
 iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW -m recent --update --seconds 1 --hitcount 3 -j REJECT
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 ```
 
+Test dengan 4 node secara bersamaan dengan: `parallel curl -s http://IP-HollowZero ::: IP-Caesar IP-Burnice IP-Jane IP-Policeboo`
+
 ## Soal 8
 
 > Selama uji coba, Fairy mendeteksi aktivitas mencurigakan dari Burnice. Setiap paket yang dikirim Fairy ke Burnice ternyata dialihkan ke HollowZero. Gunakan nc untuk memastikan alur pengalihan ini.
 
+**iptables.sh - Burnice**
+
 ```bash
-# Konfigurasi Burnice
-iptables -t nat -A PREROUTING -p tcp -j DNAT --to-destination 192.246.2.226 --dport 8080
-iptables -A FORWARD -p tcp -d 192.246.2.226 -j ACCEPT
+iptables -t nat -A PREROUTING -p tcp -j DNAT --to-destination 10.74.1.226 --dport 8080
+iptables -A FORWARD -p tcp -d 10.74.1.226 -j ACCEPT
 ```
+
+Setelah menjalankan command diatas, nc yang mengarah ke Burnice seharusnya dialihkan ke HollowZero (10.74.1.226), dan bisa dicek melalui tcpdump: `tcpdump -i eth0 host 10.74.1.202 and port 8080`
 
 # Misi 3: Menangkap Burnice
 
@@ -684,8 +706,9 @@ iptables -A FORWARD -p tcp -d 192.246.2.226 -j ACCEPT
 
 > Mengetahui hal tersebut Wise dan Belle mengambil langkah drastis: memblokir semua lalu lintas yang masuk dan keluar dari Burnice, gunakan nc dan ping. **Burnice ya bukan Caesar**
 
+**iptables.sh - Burnice**
+
 ```bash
-# Mengubah policy iptables
 iptables --policy INPUT DROP
 iptables --policy OUTPUT DROP
 iptables --policy FORWARD DROP
