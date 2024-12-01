@@ -640,20 +640,53 @@ iptables -A INPUT -p tcp --dport 80 -j REJECT # reject other requests
 >
 > c. Catat log dari iptables untuk keperluan analisis dan dokumentasikan dalam format PDF.
 
+```bash
+# Limit port scanning 25 koneksi/10 detik
+iptables -N PORTSCAN
+iptables -A INPUT -p tcp --dport 1:100 -m state --state NEW -m recent --set --name portscan
+iptables -A INPUT -p tcp --dport 1:100 -m state --state NEW -m recent --update --seconds 10 --hitcount 25 --name portscan -j PORTSCAN
+
+# Memblokir IP port scanning diatas 25
+iptables -A PORTSCAN -m recent --set --name blacklist
+iptables -A PORTSCAN -j DROP
+
+# Memblokir IP pada daftar blacklist
+iptables -A INPUT -m recent --name blacklist --rcheck -j REJECT
+iptables -A OUTPUT -m recent --name blacklist --rcheck -j REJECT
+
+iptables -A PORTSCAN -j LOG --log-prefix='PORT SCAN DETECTED' --log-level 4 # Logging port scanning
+```
+
 ## Soal 7
 
 > Hari Senin tiba, dan Fairy menyarankan membatasi akses ke server Hollow. Akses ke Hollow hanya boleh berasal dari 2 koneksi aktif dari 2 IP yang berbeda dalam waktu bersamaan.Burnice, Caesar, Jane, dan Policeboo diminta melakukan uji coba menggunakan curl.
 
-
+```bash
+# Konfigurasi HollowZero
+iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW -m recent --set
+iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW -m recent --update --seconds 1 --hitcount 3 -j REJECT
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+```
 
 ## Soal 8
 
 > Selama uji coba, Fairy mendeteksi aktivitas mencurigakan dari Burnice. Setiap paket yang dikirim Fairy ke Burnice ternyata dialihkan ke HollowZero. Gunakan nc untuk memastikan alur pengalihan ini.
 
-
+```bash
+# Konfigurasi Burnice
+iptables -t nat -A PREROUTING -p tcp -j DNAT --to-destination 192.246.2.226 --dport 8080
+iptables -A FORWARD -p tcp -d 192.246.2.226 -j ACCEPT
+```
 
 # Misi 3: Menangkap Burnice
 
 ## Soal 1
 
 > Mengetahui hal tersebut Wise dan Belle mengambil langkah drastis: memblokir semua lalu lintas yang masuk dan keluar dari Burnice, gunakan nc dan ping. **Burnice ya bukan Caesar**
+
+```bash
+# Mengubah policy iptables
+iptables --policy INPUT DROP
+iptables --policy OUTPUT DROP
+iptables --policy FORWARD DROP
+```
