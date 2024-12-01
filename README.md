@@ -14,6 +14,7 @@
 	- [Soal 2: VLSM](#soal-2-vlsm)
 		- [Detail Subnetting](#detail-subnetting)
 		- [Pembagian IP](#pembagian-ip)
+		- [Tree](#tree)
 	- [Soal 3: Set IP \& Routing](#soal-3-set-ip--routing)
 		- [Set IP](#set-ip)
 		- [Routing](#routing)
@@ -89,6 +90,10 @@ Keterangan:
 | A7     | 10.74.0.0       | 255.255.255.0     | 10.74.0.255   | 10.74.0.1 - 10.74.0.254  |
 | A8     | 10.74.1.192     | 255.255.255.248   | 10.74.1.199   | 10.74.1.193 - 10.74.1.198|
 | A9     | 10.74.1.0       | 255.255.255.128   | 10.74.1.127   | 10.74.1.1 - 10.74.1.126  |
+
+### Tree
+
+![alt text](assets/vlsmtreedark.png)
 
 ## Soal 3: Set IP & Routing
 
