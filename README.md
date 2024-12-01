@@ -24,7 +24,7 @@
 		- [DNS Server - dnsserv.sh](#dns-server---dnsservsh)
 		- [Webserver - webserv.sh](#webserver---webservsh)
 - [Misi 2: Menemukan Jejak Sang Peretas](#misi-2-menemukan-jejak-sang-peretas)
-	- [Soal 1: Set iptables](#soal-1-set-iptables)
+	- [Soal 1](#soal-1)
 	- [Soal 2](#soal-2)
 	- [Soal 3](#soal-3)
 	- [Soal 4](#soal-4)
@@ -33,7 +33,7 @@
 	- [Soal 7](#soal-7)
 	- [Soal 8](#soal-8)
 - [Misi 3: Menangkap Burnice](#misi-3-menangkap-burnice)
-	- [Soal 1](#soal-1)
+	- [Soal 1](#soal-1-1)
 
 
 # Misi 1: Memetakan Kota New Eridu
@@ -563,7 +563,7 @@ service apache2 restart
 
 # Misi 2: Menemukan Jejak Sang Peretas
 
-## Soal 1: Set iptables
+## Soal 1
 
 > Agar jaringan di New Eridu bisa terhubung ke luar (internet), kalian perlu mengkonfigurasi routing menggunakan iptables. Namun, kalian tidak diperbolehkan menggunakan MASQUERADE.
 
@@ -680,6 +680,8 @@ iptables -A PORTSCAN -j LOG --log-prefix='PORT SCAN DETECTED' --log-level 4 # lo
 Testing: `nmap -p 1-100 10.74.1.195`, ping, curl, nc
 
 ## Soal 7
+
+**iptables.sh - HollowZero**
 
 > Hari Senin tiba, dan Fairy menyarankan membatasi akses ke server Hollow. Akses ke Hollow hanya boleh berasal dari 2 koneksi aktif dari 2 IP yang berbeda dalam waktu bersamaan. Burnice, Caesar, Jane, dan Policeboo diminta melakukan uji coba menggunakan curl.
 
