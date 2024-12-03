@@ -590,6 +590,7 @@ Revert:
 iptables -D INPUT -p icmp --icmp-type echo-request -j DROP
 iptables -D OUTPUT -p icmp --icmp-type echo-request -j ACCEPT
 ```
+![alt text](assets/misi2no2.jpeg)
 
 ## Soal 3
 
@@ -605,6 +606,7 @@ iptables -A INPUT -j REJECT # block all
 Testing: 
 - `nc 10.74.1.203 1234` - Fairy
 - `nc -l -p 1234` - HDD
+![alt text](assets/misi2no3.jpeg)
 
 ## Soal 4
 
@@ -621,6 +623,7 @@ iptables -A INPUT -p tcp --dport 80 -j REJECT
 ```
 
 Testing: `curl http://10.74.1.226`
+![alt text](assets/misi2no4.jpeg)
 
 ## Soal 5
 
@@ -647,6 +650,7 @@ iptables -A INPUT -p tcp --dport 80 -j REJECT # reject other requests
 ```
 
 Testing: `curl 10.74.1.195` (harus di UTC time)
+![alt text](assets/misi2no5.jpeg)
 
 ## Soal 6
 
@@ -678,6 +682,7 @@ iptables -A PORTSCAN -j LOG --log-prefix='PORT SCAN DETECTED' --log-level 4 # lo
 ```
 
 Testing: `nmap -p 1-100 10.74.1.195`, ping, curl, nc
+![alt text](assets/misi2no6.jpeg)
 
 ## Soal 7
 
@@ -693,6 +698,7 @@ iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 ```
 
 Test dengan 4 node secara bersamaan dengan: `parallel curl -s http://IP-HollowZero ::: IP-Caesar IP-Burnice IP-Jane IP-Policeboo`
+![alt text](assets/misi2no7.jpeg)
 
 ## Soal 8
 
@@ -704,6 +710,10 @@ Test dengan 4 node secara bersamaan dengan: `parallel curl -s http://IP-HollowZe
 iptables -t nat -A PREROUTING -p tcp -j DNAT --to-destination 10.74.1.226 --dport 8080
 iptables -A FORWARD -p tcp -d 10.74.1.226 -j ACCEPT
 ```
+![alt text](assets/misi2no8.jpeg)
+![alt text](assets/misi2no8-2.jpeg)
+![alt text](assets/misi2no8-3.jpeg)
+![alt text](assets/misi2no8-4.jpeg)
 
 Setelah menjalankan command diatas, nc yang mengarah ke Burnice seharusnya dialihkan ke HollowZero (10.74.1.226), dan bisa dicek melalui tcpdump: `tcpdump -i eth0 host 10.74.1.202 and port 8080`
 
@@ -720,3 +730,5 @@ iptables --policy INPUT DROP
 iptables --policy OUTPUT DROP
 iptables --policy FORWARD DROP
 ```
+![alt text](assets/misi3no1.jpeg)
+![alt text](assets/misi3no1-2.jpeg)
